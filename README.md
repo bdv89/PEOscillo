@@ -137,16 +137,21 @@ python -m scope.cli gui 192.168.1.50
 
 ## Licence
 
+Vitrine (anglais, appel Horizon Europe RAISE) : https://github.com/bdv89/PEO-showcase
+
 Apache 2.0 (voir [LICENSE](LICENSE)). Le nom, le logo et la charte graphique
 Materianova ne sont pas couverts par cette licence (voir [NOTICE](NOTICE)).
 
 ## Tests
 
 ```bash
-pytest        # 285 tests : décodage, pilotage, mesures, autoscale, discovery, export
+pytest        # 373 tests (2026-10-06) : décodage, pilotage, mesures, autoscale, discovery, export
               # multi-format, export multi-voies (CSV combiné), statut/trigger, screenshot,
               # série time-lapse (CLI + GUI), CLI, launcher (détection deps + résolution IP),
-              # extraction des plateaux (dont non-régression sur PEO_N_41/43),
+              # extraction des plateaux (seuils relatifs au bruit, mA/A, bipolaire ;
+              # non-régression sur samples/PEO_N_22/41/43, hors dépôt),
+              # fenêtre GUI réelle hors écran avec scope simulé (connexion,
+              # Arrêter, analyse en direct, installation neuve),
               # réglages GUI mémorisés, fiche d'expérience / meta v2 / empreintes /
               # re-traitement, charte graphique
               # — sans matériel (scope mocké)

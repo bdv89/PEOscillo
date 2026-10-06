@@ -32,7 +32,8 @@ n'est requise. NI-VISA reste utilisable s'il est déjà présent.
 
 ### Vérifier les tests
 
-190 tests tournent sans matériel (scope mocké) :
+La suite complète (373 tests au 2026-10-06) tourne sans matériel (scope simulé,
+y compris la vraie fenêtre GUI hors écran ; PyQt5 requis, donc le `.venv` d'`install.ps1`) :
 
 ```bash
 nix-shell --run "pytest -q"     # NixOS
@@ -647,7 +648,8 @@ quel essai, sur quoi et comment, sans cahier de labo. Tout est écrit dans le
   retirée volontairement est permise et tracée. Chaque analyse (série ou re-traitement)
   est ajoutée au meta avec la **version de l'algorithme** (empreinte de `plateaux.py`,
   change à toute modification) et ses paramètres.
-- **Même re-traitement en script** : `tools/extract_plateaux.py` appelle la même fonction
+- **Même re-traitement en script** : `python tools/extract_plateaux.py "D:\Mesures\PEO"`
+  (dossier contenant les séries `PEO_N_*`, argument obligatoire) appelle la même fonction
   (`experiment.reprocess`) sur chaque dossier `PEO_N_*`, mais range les CSV et PNG dans
   `resultats/` et ne produit que `{id}_controle.png` (pas de PNG par capture). Dans le
   dossier de série, seul le `meta.json` est mis à jour (empreintes, captures retirées,

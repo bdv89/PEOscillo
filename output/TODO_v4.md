@@ -66,3 +66,17 @@ exception non interceptée -> thread d'acquisition mort, UI figée en « armée 
       système sans PyQt5).
 - Cause matérielle restante : interface réseau du scope bloquée (piège documenté :
   rafale de réglages) -> redémarrer le scope ; diagnostic dans INSTALL.md.
+
+## Scope resté sur Stop pendant l'enregistrement (2026-10-06, constaté sur le scope)
+- [x] Le départ au seuil arme un trigger SINGLE, arrêté par la détection : scope sur Stop
+      pendant toute la série, chaque capture relisait la même trace figée. `resume_acquisition`
+      au début de l'enregistrement (GUI et CLI) : `TRMD AUTO` + `ARM` après un seuil, `ARM` seul
+      sinon. AUTO plutôt que NORM : générateur arrêté => captures « sans signal », pas une
+      ancienne trace répétée. Tests sur les séquences SCPI envoyées.
+- Les séries enregistrées AVANT ce correctif ne contiennent qu'une vraie capture (la première).
+
+## Confidentialité (2026-10-06)
+- [x] Un test (branche de l'agent) citait un chemin réseau interne avec des prénoms ; publié dans
+      le commit de fusion. Commit réécrit (force-push avec lease), chemin retiré, test limité à la
+      copie locale `samples/c`. INSTALL.md : rattrapage `git fetch; git reset --hard origin/main`.
+- Leçon : balayer les fichiers publiés SANS tronquer la sortie (un `head` avait masqué la ligne).
